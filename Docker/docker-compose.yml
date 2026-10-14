@@ -2,13 +2,16 @@ name: nexus
 services:
   alcatraz-rdv:
     image: alcatraz-rdv:latest
+    restart: unless-stopped
     ports:
+      - "5000:8080"
       - "21001:21001/udp"
       - "21006:21006/udp"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
     build:
       context: ./server
     volumes:
       - ./data/alcatraz/serverFiles/:/var/lib/alcatraz/serverFiles/
       - /home/nexus/alcatraz:/var/lib/alcatraz/data/
-    expose:
-      - "5000"

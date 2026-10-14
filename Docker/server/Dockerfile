@@ -11,4 +11,7 @@ WORKDIR /app
 COPY --from=build /app/publish .
 ENV ASPNETCORE_URLS=http://*:5000
 ENV ASPNETCORE_ENVIRONMENT=Production
+EXPOSE 8080
+EXPOSE 21001
+EXPOSE 21006
 ENTRYPOINT ["dotnet", "AlcatrazGameServices.dll"]

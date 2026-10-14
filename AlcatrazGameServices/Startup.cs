@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using QNetZ;
+using System.IO;
 
 namespace Alcatraz.GameServices
 {
@@ -89,9 +90,15 @@ namespace Alcatraz.GameServices
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MainDbContext dbContext)
-		{
-			// update database if haven't
-			dbContext.Database.Migrate();
+        {
+            var connString = dbContext.Database.GetConnectionString();
+            var csb = new Microsoft.Data.Sqlite.SqliteConnectionStringBuilder(connString);
+
+            var fullPath = Path.GetFullPath(csb.DataSource, env.ContentRootPath);
+            Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
+
+            // update database if haven't
+            dbContext.Database.Migrate();
 
 			// if db context was used during migrations, send changes after all migrations done
 			dbContext.SaveChanges();

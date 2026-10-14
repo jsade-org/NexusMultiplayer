@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
-using System;
 
 namespace Alcatraz.Context.Entities
 {

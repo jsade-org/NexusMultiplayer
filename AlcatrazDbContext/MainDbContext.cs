@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
 
 namespace Alcatraz.Context
 {
@@ -17,8 +16,8 @@ namespace Alcatraz.Context
 		MySQL = 1,
 	}
 
-	// TO run migrations:
-	// Add-Migration NAME -Project AlcatrazDbContext -StartupProject AlcatrazGameServices -Context MainDbContext
+	// To run migrations:
+	// Add-Migration -Project AlcatrazContext -StartupProject AlcatrazGameServices -Context MainDbContext
 
 	public class MainDbContext : DbContext
 	{
@@ -31,11 +30,6 @@ namespace Alcatraz.Context
 				return opt.UseSqlite(connectionString);
 			}
 
-			if (type == DBType.MySQL)
-			{
-				var serverVersion = new MySqlServerVersion(new Version(8, 0, 25));
-				return opt.UseMySql(connectionString, serverVersion, conf => conf.CommandTimeout(60));
-			}
 			return opt;
 		}
 		public MainDbContext()

@@ -15,5 +15,5 @@ jobs:
 
       - name: Deploy
         run: |
-          docker compose -p nexus -f Docker/docker-compose.yml up -d --no-build --remove-orphans
+          docker compose -f Docker/docker-compose.yml up -d --no-build --remove-orphans
           docker image prune -f

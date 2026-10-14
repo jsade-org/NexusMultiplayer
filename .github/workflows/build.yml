@@ -1,0 +1,19 @@
+name: build
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+  
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+  
+      - name: Build runtime image
+        run: docker build -t alcatraz-rdv:latest .

@@ -10,4 +10,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0
 COPY --from=build /app/publish .
 WORKDIR /app
 ENV ASPNETCORE_URLS http://*:5000
-ENTRYPOINT ["AlcatrazGameServices.exe"]
+ENTRYPOINT ["dotnet", "AlcatrazGameServices.dll"]

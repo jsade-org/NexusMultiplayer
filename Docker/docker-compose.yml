@@ -9,6 +9,6 @@ services:
       context: ./server
     volumes:
       - ./data/alcatraz/serverFiles/:/var/lib/alcatraz/serverFiles/
-      - /var/lib/alcatraz/:/var/lib/alcatraz/data/
+      - /home/nexus/alcatraz:/var/lib/alcatraz/data/
     expose:
       - "5000"

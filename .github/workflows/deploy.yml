@@ -2,17 +2,18 @@ name: deploy
 
 on:
   workflow_dispatch:
-  
+
 concurrency:
   group: deploy
-  cancel-in-progress: true
-  
+  cancel-in-progress: false
+
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: [self-hosted, public]
     steps:
+      - uses: actions/checkout@v4
+
       - name: Deploy
-        working-directory: /opt/app
         run: |
-          docker compose up -d --force-recreate
+          docker compose -f Docker/docker-compose.yml up -d --no-build --remove-orphans
           docker image prune -f

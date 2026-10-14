@@ -16,7 +16,7 @@ AlcatrazInnoSetup/Output*
 _RESEARCH/*
 Docker/server/publish/*
 Docker/init-letsencrypt.sh
-data/database.sqlite
+data/*
 _publish/*
 *.sqlite
 *.sqlite-shm
@@ -26,4 +26,3 @@ AlcatrazGameServices/_RDV_log.txt
 AlcatrazGameServices/packetLog.bin
 AlcatrazGameServices/appsettings.Development.json
 AlcatrazGameServices/appsettings.json
-data/appsettings.json

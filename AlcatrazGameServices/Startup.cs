@@ -95,6 +95,7 @@ namespace Alcatraz.GameServices
             var csb = new Microsoft.Data.Sqlite.SqliteConnectionStringBuilder(connString);
 
             var fullPath = Path.GetFullPath(csb.DataSource, env.ContentRootPath);
+
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
 
             // update database if haven't
@@ -124,7 +125,9 @@ namespace Alcatraz.GameServices
 
 			// custom jwt auth middleware
 			app.UseMiddleware<JwtMiddleware>();
-			if(QConfiguration.Instance.Environment == Environment.Dev && QConfiguration.Instance.LogLevel == 4) app.UseMiddleware<LogHttpMiddleware>();
+
+			if(QConfiguration.Instance.Environment == Environment.Dev && QConfiguration.Instance.LogLevel == 4)
+				app.UseMiddleware<LogHttpMiddleware>();
 			
 			app.UseEndpoints(endpoints =>
 			{

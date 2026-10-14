@@ -1,6 +1,7 @@
 name: nexus
 services:
   alcatraz-rdv:
+    image: alcatraz-rdv:latest
     ports:
       - "21005:21005/udp"
       - "21006:21006/udp"
